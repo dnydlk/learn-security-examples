@@ -1,1 +1,17 @@
-Briefly explain the vulnerability and why the secure version prevents the vulnerability.
+Q1 Briefly explain the vulnerability and why the secure version prevents the vulnerability.
+
+Vulnerability in the Insecure Version
+Session Cookie Configuration: The insecure version sets the httpOnly flag of the session cookie to false, making it accessible to client-side scripts. This setting increases the risk of cross-site scripting (XSS) attacks, where an attacker could use a script to steal the session cookie and impersonate the user.
+
+Lack of sameSite Attribute: The sameSite attribute is not set for the session cookie, which could make the application vulnerable to cross-site request forgery attacks. Without this attribute, cookies might be sent along with requests initiated by third-party websites, potentially leading to unauthorized actions on behalf of the user.
+
+Static Session Secret: The session secret ("SOMESECRET") is hardcoded, making it easier for an attacker to guess or obtain the secret, especially if the codebase is not properly secured. This compromises the integrity of session IDs, making session hijacking attacks more feasible.
+
+Security Measures in the Secure Version
+Improved Cookie Security: The secure version sets httpOnly to true and adds sameSite with a value of true as well, effectively mitigating the risks associated with XSS and CSRF attacks. The httpOnly flag prevents client-side scripts from accessing the cookie, reducing the risk of XSS attacks. The sameSite attribute restricts the sending of cookies to only first-party contexts, which helps prevent CSRF attacks.
+
+Dynamic Session Secret: The secure version utilizes a dynamic session secret passed as an argument (process.argv[2]), instead of a hardcoded value. This improves the security by ensuring that the session secret is not exposed in the codebase and can be changed regularly without modifying the source code, making it much harder for attackers to guess or obtain the secret.
+
+Q2 Which CIA properties do you think Spoofing violates?
+
+I think Spoofing violates confidentiality and integrity properties. Insecure session secret and session cookie security issues violates confidentiality and lack of input validation and sanitization violates integrity.
