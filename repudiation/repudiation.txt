@@ -1,2 +1,5 @@
-- Briefly explain the vulnerability and why the secure version is better at preventing repudiation than the insecure version.
-- What additional security mechanisms can you incorporate to prevent such attacks?
+Briefly explain the vulnerability and why the secure version is better at preventing repudiation than the insecure version.
+  The vulnerability of the insecure version is that there is no logging or tracking of user actions. This means that there is no way to prove that a user performed a certain action. In the secure version, detailed logging implemented. Each request is logged with a timestamp, the type of request, the URL, and the user's IP address. 
+
+What additional security mechanisms can you incorporate to prevent such attacks?
+  To prevent such attacks, additional security mechanisms can be incorporated such as implementing multi-factor authentication, using secure communication protocols like HTTPS.

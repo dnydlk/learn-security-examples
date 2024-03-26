@@ -1,0 +1,5 @@
+Briefly explain the vulnerability and why the secure version prevents the vulnerability.
+  The vulnerability is the lack of user authentication when attempting to update a user's role. The attacker could use brute force to figure out the admin's id and then update the admin's role to a user. The secure version implemented session-based authentication and making authorization decisions based on the session data, rather than relying on user input. 
+
+What additional security mechanisms can you incorporate to prevent such attacks?
+  The session should be signed by signed by secrete key and the session should be encrypted. The session management could be added with two-factor-authentication.

@@ -1,3 +1,8 @@
 Briefly explain the vulnerability and why the secure version prevents the vulnerability.
+  The vulnerability is its handling of user input without sanitation. The route /userinfo uses a user-provided value in a MongoDB query through Mongoose's findOne method. This allows for NoSQL injection attacks. In contrast, the secure version prevented this vulnerability by adding input validation and sanitation before using the variable in the database. First it checks the username is type of string, and then it removes non-alphanumeric characters characters.
+
 Which CIA property does tampering violate?
+  Tampering violates the "Integrity" property
+
 What additional security mechanisms can you incorporate?
+  Authentication mechanism such as MFA could be implemented. Also, the passwords that are stored in the database could be hashed and salted to prevent unauthorized access to the database.

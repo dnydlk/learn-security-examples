@@ -1,2 +1,5 @@
-- Briefly explain the vulnerability and why the secure version prevents the vulnerability.
-- What additional security mechanisms can you incorporate to prevent such attacks?
+Briefly explain the vulnerability and why the secure version prevents the vulnerability.
+  The vulnerability is its handling of user input without sanitation. The route /userinfo uses a user-provided value in a MongoDB query through Mongoose's findOne method. This allows for NoSQL injection attacks. In contrast, the secure version prevented this vulnerability by adding a try-catch block around the database query. This way, if an error occurs, the server will return a 500 error instead of the user's information.
+
+What additional security mechanisms can you incorporate to prevent such attacks?
+  Input validation could be implemented to check the type of the user-provided value. Also sanitize inputs to remove non-alphanumeric characters. Additionally, implement rate limiting can prevent brute force attacks and reduce the impact of Dos attacks.
